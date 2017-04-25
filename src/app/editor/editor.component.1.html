@@ -1,0 +1,26 @@
+<div class="form-group">
+  <label for="name" class="col-sm-4 control-label">{{title}}</label>
+  <div class="col-sm-8" *ngIf='!show'>
+    <p class="form-control-static">
+      <span [innerHtml]='param | paragraph'></span>
+      <button class="btn btn-default btn-xs" (click)="showEditor()">Edit</button>
+    </p>
+  </div>
+  <div class="col-sm-8" *ngIf='show'>
+    <form #editForm ='ngForm'>
+      <p *ngIf='field != "textarea"' class="form-control-static">
+        <input *ngIf='isEmail' [type]='field' class="form-control" name='edit-field' 
+            [(ngModel)]='value' 
+            pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
+        <input *ngIf='!isEmail' [type]='field' class="form-control" name='edit-field' 
+            [(ngModel)]='value' 
+            [required]="isRequired ? '' : null">
+      </p>
+      <p *ngIf='field == "textarea"' class="form-control-static">
+        <textarea [(ngModel)]='value' class="form-control"></textarea>
+      </p>
+      <button class="btn btn-success btn-xs"  [disabled]="!editForm.form.valid" (click)="save()">Save</button>
+      <button class="btn btn-default btn-xs" (click)="cancel()">Cancel</button>
+    </form>
+  </div>
+</div>

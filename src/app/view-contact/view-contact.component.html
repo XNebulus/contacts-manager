@@ -1,0 +1,20 @@
+<div class="page-header row">
+  <h1><img src="http://placehold.it/50x50" class="img-circle">{{contact.name}}</h1>
+</div>
+
+<div class="form-horizontal">
+
+  <div class="row">
+    <div class="col-xs-6">
+      <app-editor [(param)]='contact.name' title='Name' [isRequired]='true'></app-editor>
+      <app-editor [(param)]='contact.phone' title='Phone Number'></app-editor>
+      <app-editor [(param)]='contact.address' title='Address'></app-editor>
+    </div>
+    <div class="col-xs-6">
+      <app-editor [(param)]='contact.email' field='email' title='Email Address' [isEmail]='true'></app-editor>
+      <app-editor [(param)]='contact.website' title='Website'></app-editor>
+      <app-editor [(param)]='contact.notes' title='Notes' field='textarea'></app-editor>
+    </div>
+  </div>
+
+</div>
