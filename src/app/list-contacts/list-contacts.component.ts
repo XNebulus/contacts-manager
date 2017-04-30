@@ -8,16 +8,16 @@ import { SearchService } from '../shared/search.service'
   templateUrl: './list-contacts.component.html',
   styleUrls: ['./list-contacts.component.css'],
   animations: [
-  trigger('fadeInOut', [
-    transition(':enter', [   // :enter is alias to 'void => *'
-      style({opacity:0}),
-      animate(500, style({opacity:1})) 
-    ]),
-    transition(':leave', [   // :leave is alias to '* => void'
-      animate(500, style({opacity:0})) 
+    trigger('fadeInOut', [
+      transition(':enter', [   // :enter is alias to 'void => *'
+        style({ opacity: 0 }),
+        animate(500, style({ opacity: 1 }))
+      ]),
+      transition(':leave', [   // :leave is alias to '* => void'
+        animate(500, style({ opacity: 0 }))
+      ])
     ])
-  ])
-]
+  ]
 })
 export class ListContactsComponent implements OnInit {
 
@@ -40,7 +40,10 @@ export class ListContactsComponent implements OnInit {
   }
 
   delete(contact: Contact) {
-    this.contactServise.delete(contact);
+    //this.contactServise.delete(contact.id);
+    this.contactServise.delete(contact.id)
+      .then(() => {
+        this.contacts = this.contacts.filter(c => c !== contact);
+      });
   }
-
 }

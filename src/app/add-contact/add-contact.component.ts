@@ -30,6 +30,7 @@ export class AddContactComponent implements OnInit {
   add() {
     this.isSending = true;
     this.contact.id = new Date().getTime();
+    
     this.contactServise.add(this.contact).then((data) => {
       this.router.navigate(['/contacts']);
     });

@@ -15,6 +15,7 @@ export class EditorComponent implements OnInit {
   @Input() isEmail : boolean = false;
   show: boolean;
   value: string;
+  
   constructor() {
     this.show = false;
     this.field = 'text';

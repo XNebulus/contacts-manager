@@ -1,52 +1,61 @@
 import { Injectable } from '@angular/core';
 import { Contact } from './contact';
+import { Http, Headers } from '@angular/http';
+
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class ContactService {
 
-  private contacts: Contact[];
-  private isNewData = true;
+  private contactsUrl = '/api/contacts';
+  private headers = new Headers({ 'Content-Type': 'application/json' });
 
-  constructor() {
-    this.contacts = [{
-      id: 1, name: 'Karan Bromwich', phone: '01234 56734', address: '123, Some Street\nLeicester\nLE1 2AB',
-      email: 'karan@example.com', website: 'stephenradford.me', notes: ''
-    },
-    {
-      id: 2, name: 'Declan Proud', phone: '01234 567890', address: '234, Some Street\nLeicester\nLE1 2AB',
-      email: 'declan@example.com', website: 'declanproud.me', notes: 'Some notes about the contact.'
-    }];
-  }
+  constructor(private http: Http) { }
 
   get(): Promise<Contact[]> {
-    let delay = 0;
-    if (this.isNewData) {
-      this.isNewData = !this.isNewData;
-      delay = 2000;
-    }
-
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        resolve(this.contacts);
-      }, delay)
-    });
+    return this.http.get(this.contactsUrl)
+      .toPromise()
+      .then(response => response.json().data as Contact[])
+      .catch(this.handleError);
   }
 
-  find(id: number): Contact {
-    return this.contacts.find(contact => contact.id == id);
+  delete(id: number): Promise<void> {
+    const url = `${this.contactsUrl}/${id}`;
+    return this.http.delete(url, { headers: this.headers })
+      .toPromise()
+      .then(() => null)
+      .catch(this.handleError);
   }
 
-  add (contact: Contact) : Promise<Contact> {
-     return new Promise((resolve) => {
-      setTimeout(() => {
-        this.contacts.push(contact);
-        resolve(contact);
-      }, 2000)
-    });
+  getContact(id: number): Promise<Contact> {
+    const url = `${this.contactsUrl}/${id}`;
+    return this.http.get(url)
+      .toPromise()
+      .then(response => response.json().data as Contact)
+      .catch(this.handleError);
   }
 
-  delete(contact: Contact) {
-    this.contacts.splice(this.contacts.indexOf(contact), 1);
+  update(contact: Contact): Promise<Contact> {
+    const url = `${this.contactsUrl}/${contact.id}`;
+    return this.http
+      .put(url, JSON.stringify(contact), { headers: this.headers })
+      .toPromise()
+      .then(() => contact)
+      .catch(this.handleError);
+  }
+
+  add(contact: Contact): Promise<Contact> {
+     return this.http    
+      .post(this.contactsUrl, JSON.stringify(contact), {headers: this.headers})
+      .toPromise()
+      .then(res => res.json().data as Contact)
+      .catch(this.handleError);
+  }
+
+  private handleError(error: any): Promise<any> {
+    console.error('An error occurred', error); // for demo purposes only
+    return Promise.reject(error.message || error);
   }
 
 }

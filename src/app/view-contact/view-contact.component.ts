@@ -11,17 +11,23 @@ import { ContactService } from '../shared/contact.service';
 })
 export class ViewContactComponent implements OnInit {
 
-  contact: Contact;
+  contact: Contact = new Contact();
   private id: number;
 
-  constructor(private contactServise: ContactService, private route: ActivatedRoute) {
+  constructor(private contactService: ContactService, private route: ActivatedRoute) {
   }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.id = +params['id'];
-      this.contact = this.contactServise.find(this.id);
+      this.contactService.getContact(this.id).then(contact => this.contact = contact);
     });
+  }
+
+  onSaved(evt: string): void {
+    this.contactService
+      .update(this.contact)
+      .then(() => window.alert('Saved!!! ' + evt));
   }
 
 }
