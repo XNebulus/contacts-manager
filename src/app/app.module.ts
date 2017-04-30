@@ -6,9 +6,9 @@ import { HttpModule } from '@angular/http';
 import { AppRoutingModule } from './app-routing.module'
 
 import { AppComponent } from './app.component';
-import { ListContactsComponent } from './list-contacts/list-contacts.component';
-import { AddContactComponent } from './add-contact/add-contact.component';
-import { ViewContactComponent } from './view-contact/view-contact.component';
+import { ListContactsComponent } from './contact-list/list-contacts.component';
+import { AddContactComponent } from './contact-add/add-contact.component';
+import { ViewContactComponent } from './contact-view/view-contact.component';
 import { EditorComponent } from './editor/editor.component';
 import { ModalComponent } from './modal/modal.component';
 

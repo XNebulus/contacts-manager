@@ -30,6 +30,7 @@ export class ListContactsComponent implements OnInit {
   ngOnInit() {
     this.contactServise.get().then((data) => {
       this.contacts = data;
+      this.contacts.sort( (a: Contact, b: Contact) => a.name.localeCompare(b.name) );
       this.loading = false;
     });
     this.searchService.termAnnounced$.subscribe(

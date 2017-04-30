@@ -27,7 +27,7 @@ export class ViewContactComponent implements OnInit {
   onSaved(evt: string): void {
     this.contactService
       .update(this.contact)
-      .then(() => window.alert('Saved!!! ' + evt));
+      .then(() => window.alert('The info was saved successfully.'));
   }
 
 }
