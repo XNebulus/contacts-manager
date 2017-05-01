@@ -14,8 +14,8 @@ import { ModalComponent } from './modal/modal.component';
 
 import { ContactService } from './shared/contact.service';
 import { SearchService } from './shared/search.service'
-import { SearchPipe } from './shared/search.pipe';
-import { ParagraphPipe } from './shared/paragraph.pipe';
+import { SearchPipe } from './shared/pipes/search.pipe';
+import { ParagraphPipe } from './shared/pipes/paragraph.pipe';
 
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './shared/in-memory-data.service';
