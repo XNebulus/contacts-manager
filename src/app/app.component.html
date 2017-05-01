@@ -12,12 +12,7 @@
 			<li routerLinkActive="active"><a routerLink="/contacts">Browse</a></li>
 			<li routerLinkActive="active"><a routerLink="/add">Add Contact</a></li>
 		</ul>
-		<form class="navbar-form navbar-right" role="search">
-
-			<div>
-				<input type="text" class="form-control" placeholder="Search" #box (keyup)='searchTerm(box.value)'>
-			</div>
-		</form>
+		<app-search (search)="searchTerm($event)"></app-search>
 	</div>
 </nav>
 <section class="container">

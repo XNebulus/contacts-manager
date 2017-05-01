@@ -19,6 +19,7 @@ import { ParagraphPipe } from './shared/pipes/paragraph.pipe';
 
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './shared/in-memory-data.service';
+import { SearchComponent } from './search/search.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { InMemoryDataService } from './shared/in-memory-data.service';
     EditorComponent,
     ModalComponent,
     SearchPipe,
-    ParagraphPipe
+    ParagraphPipe,
+    SearchComponent
   ],
   imports: [
     BrowserModule,
