@@ -20,6 +20,9 @@ import { ParagraphPipe } from './shared/pipes/paragraph.pipe';
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './shared/in-memory-data.service';
 import { SearchComponent } from './search/search.component';
+import { LoggedInGuard } from './shared/login.guard';
+import {AuthService} from './shared/auth.service';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +34,8 @@ import { SearchComponent } from './search/search.component';
     ModalComponent,
     SearchPipe,
     ParagraphPipe,
-    SearchComponent
+    SearchComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +44,7 @@ import { SearchComponent } from './search/search.component';
     InMemoryWebApiModule.forRoot(InMemoryDataService),
     AppRoutingModule
   ],
-  providers: [ContactService, SearchService],
+  providers: [ContactService, SearchService, AuthService, LoggedInGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
