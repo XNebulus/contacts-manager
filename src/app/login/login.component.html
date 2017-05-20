@@ -1,4 +1,4 @@
-<form novalidate #loginForm="ngForm">
+<form novalidate #loginForm="ngForm" (ngSubmit)='login()'>
   <div class="form-group">
     <label for="exampleInputEmail1">Email address</label>
     <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email" [(ngModel)]='email' name='email' required>
@@ -7,8 +7,8 @@
     <label for="exampleInputPassword1">Password</label>
     <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" [(ngModel)]='password' name='password' required>
   </div>
-  <button type="submit" class="btn btn-default" (click)='login()' [disabled]="!loginForm.form.valid">Submit</button>
+  <button type="submit" class="btn btn-default" [disabled]="!loginForm.form.valid">Submit</button>
 </form>
-<div class="alert alert-danger" role="alert" *ngIf='isNotValidData'>
-  Email or password is not valid.
-</div>
+
+<app-alert [showalert]='isNotValidData' [message]="'Email or password is not valid.'" [viewType]="'alert-danger'"
+           (showalertChanged)='isNotValidData = $event'></app-alert>

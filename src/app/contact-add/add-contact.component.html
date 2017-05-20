@@ -58,6 +58,6 @@
     </div>
   </div>
 </form>
-<div class="alert alert-info" role="alert" *ngIf='isSending'  [@fadeInOut]>
-  Sending data...
-</div>
+
+<app-alert [showalert]='isSending' [message]="'Sending data...'" 
+           (showalertChanged)='showAlert = $event'></app-alert>

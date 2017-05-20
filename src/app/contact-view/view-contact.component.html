@@ -18,3 +18,6 @@
   </div>
 
 </div>
+
+<app-alert [showalert]='showAlert' [message]="'The new data was saved successfully.'"
+           (showalertChanged)='showAlert = $event'></app-alert>

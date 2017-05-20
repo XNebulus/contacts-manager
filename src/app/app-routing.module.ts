@@ -10,8 +10,8 @@ import { LoggedInGuard } from './shared/login.guard';
 
 const routes: Routes = [
   { path: 'contacts', component: ListContactsComponent },
-  { path: 'add', component: AddContactComponent, canActivate: [LoggedInGuard] },
-  { path: 'view/:id', component: ViewContactComponent },
+  { path: 'contacts/add', component: AddContactComponent, canActivate: [LoggedInGuard] },
+  { path: 'contacts/view/:id', component: ViewContactComponent },
   { path: 'login', component: LoginComponent },
   { path: '', redirectTo: '/contacts', pathMatch: 'full' }
 ];

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { Contact } from '../shared/contact';
@@ -10,12 +10,11 @@ import { ContactService } from '../shared/contact.service';
   styleUrls: ['./view-contact.component.css']
 })
 export class ViewContactComponent implements OnInit {
-
-  contact: Contact = new Contact();
+  public showAlert: boolean = false;
+  public contact: Contact = new Contact();
   private id: number;
 
-  constructor(private contactService: ContactService, private route: ActivatedRoute) {
-  }
+  constructor(private contactService: ContactService, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
@@ -27,7 +26,7 @@ export class ViewContactComponent implements OnInit {
   onSaved(evt: string): void {
     this.contactService
       .update(this.contact)
-      .then(() => window.alert('The info was saved successfully.'));
+      .then(() => this.showAlert = true);
   }
 
 }

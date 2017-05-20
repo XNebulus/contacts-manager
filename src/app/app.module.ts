@@ -23,6 +23,7 @@ import { SearchComponent } from './search/search.component';
 import { LoggedInGuard } from './shared/login.guard';
 import {AuthService} from './shared/auth.service';
 import { LoginComponent } from './login/login.component';
+import { AlertComponent } from './alert/alert.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { LoginComponent } from './login/login.component';
     SearchPipe,
     ParagraphPipe,
     SearchComponent,
-    LoginComponent
+    LoginComponent,
+    AlertComponent
   ],
   imports: [
     BrowserModule,

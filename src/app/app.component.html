@@ -9,8 +9,8 @@
 	</div>
 	<div class="collapse navbar-collapse" id="nav-toggle">
 		<ul class="nav navbar-nav">
-			<li routerLinkActive="active"><a routerLink="/contacts">Browse</a></li>
-			<li *ngIf="userIsLoggedIn" routerLinkActive="active"><a routerLink="/add">Add Contact</a></li>
+			<li routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"><a routerLink="/contacts">Browse</a></li>
+			<li *ngIf="userIsLoggedIn" routerLinkActive="active"><a routerLink="/contacts/add">Add Contact</a></li>
 			<li *ngIf="!userIsLoggedIn" routerLinkActive="active"><a routerLink="/login">Log in</a></li>
 			<li *ngIf="userIsLoggedIn"><a href='#' (click)="logout($event)">Log out</a></li>
 		</ul>
@@ -24,3 +24,5 @@
 		</div>
 	</div>
 </section>
+
+

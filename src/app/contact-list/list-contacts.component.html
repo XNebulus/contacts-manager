@@ -17,7 +17,7 @@
         <td>{{contact.email}}</td>
         <td>{{contact.phone}}</td>
         <td>
-          <a [routerLink]="['/view', contact.id]" class="btn btn-default btn-xs">View</a>
+          <a [routerLink]="['/contacts/view', contact.id]" class="btn btn-default btn-xs">View</a>
           <button class="btn btn-danger btn-xs" (click)="modal.show(contact)">Delete</button>
         </td>
       </tr>
